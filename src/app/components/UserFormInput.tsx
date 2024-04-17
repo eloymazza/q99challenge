@@ -18,7 +18,12 @@ const UserFormInput = () => {
 
   const send = () => {
     setLoading(true);
-    fetch(`${url}api/gpt?input=${inputValue}`, {})
+    fetch(`${url}api/gpt?input=${inputValue}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Allow-Control-Allow-Origin": "*"
+      }
+    })
       .then((res) => {
         return res.json();
       })
@@ -51,21 +56,27 @@ const UserFormInput = () => {
   return (
     <>
       <h1>OpenAI Chat</h1>
-      <input
-        type='text'
-        placeholder='Enter something'
-        onChange={(e) => handleInputChange(e.target.value)}
-      />
-      <button type='button' onClick={send}>
-        {" "}
-        Send{" "}
-      </button>
+      <div>
+        <input
+          type='text'
+          placeholder='Enter something'
+          onChange={(e) => handleInputChange(e.target.value)}
+        />
+        <button type='button' onClick={send}>
+          {" "}
+          Send{" "}
+        </button>
+      </div>
 
       <p>{outputValue ? outputValue : "El resultado se mostrara aqui"}</p>
-      <button type='button' onClick={embed}>
-        Embed
-      </button>
-      <p>{embedding ? embedding : "El embedding se mostrara aqui"}</p>
+
+      <div>
+        <h3>Embedding</h3>
+        <button type='button' onClick={embed}>
+          Embed
+        </button>
+        <p>{embedding ? embedding : "El embedding se mostrara aqui"}</p>
+      </div>
     </>
   );
 };
