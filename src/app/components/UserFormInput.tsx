@@ -45,17 +45,17 @@ const UserFormInput = () => {
 
   return (
     <>
-      <form>
-        <input
-          type='text'
-          placeholder='Enter something'
-          onChange={(e) => handleInputChange(e.target.value)}
-        />
-        <button type='button' onClick={send}>
-          {" "}
-          Send{" "}
-        </button>
-      </form>
+      <h1>OpenAI Chat</h1>
+      <input
+        type='text'
+        placeholder='Enter something'
+        onChange={(e) => handleInputChange(e.target.value)}
+      />
+      <button type='button' onClick={send}>
+        {" "}
+        Send{" "}
+      </button>
+
       <p>{outputValue ? outputValue : "El resultado se mostrara aqui"}</p>
       <button type='button' onClick={embed}>
         Embed
