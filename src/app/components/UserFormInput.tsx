@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
 
+const url =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://q99challenge-g0fd8oh07-eloy-mazzas-projects.vercel.app/";
+
 const UserFormInput = () => {
   const [inputValue, setInputValue] = React.useState("");
   const [outputValue, setOutputValue] = React.useState("");
@@ -13,7 +18,7 @@ const UserFormInput = () => {
 
   const send = () => {
     setLoading(true);
-    fetch(`http://localhost:3000/api/gpt?input=${inputValue}`, {})
+    fetch(`${url}api/gpt?input=${inputValue}`, {})
       .then((res) => {
         return res.json();
       })
@@ -28,7 +33,7 @@ const UserFormInput = () => {
   const embed = async () => {
     setLoading(true);
     try {
-      const resp = await fetch(`http://localhost:3000/api/gpt`, {
+      const resp = await fetch(`${url}api/gpt`, {
         method: "POST",
         body: outputValue
       });
